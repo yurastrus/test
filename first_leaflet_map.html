@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+	<script src="/home/yura/Leaflet/leaflet/leaflet-src.js"></script>
+	<script src="/home/yura/Leaflet/leaflet/leaflet-ajax-gh-pages/dist/leaflet.ajax.min.js"></script>
+	<style>
+		#map {position: absolute;top: 0; bottom: 0;	left: 0; right: 0;}
+	</style>
+</head>
+<body>
+	<div id = "map"></div>
+	<script>
+		var map = L.map("map").setView([49.8419,24.0273], 10)
+
+		//L.tileLayer('https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=qWROLqvuhlpkKrOEdd9s', {attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'}).addTo(map);
+
+		L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: '<a href="https://google.com">Google Maps</a>'}).addTo(map);
+		
+		//var layer = L.geoJSON.ajax("https://drive.google.com/file/d/1W8AwJ-6MxBeIA5UvS29YHXhQHmAUxfx8/view?usp=sharing");
+		//layer.addTo(map);
+
+		fetch("https://github.com/yurastrus/test/blob/master/pa.geojson")
+		.then(function (response){
+			return response.json();
+		})
+		.then(function (data){
+			L.geoJSON(data).addTo(map);
+		})
+
+
+
+	</script>
+</body>
+</html>
